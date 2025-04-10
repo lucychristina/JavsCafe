@@ -1,13 +1,32 @@
-<h2>Pindai kode di bawah ini untuk membayar:</h2>
-<img src="barcode.png" alt="Barcode Pembayaran" width="200">
-<br><br>
-<button onclick="konfirmasiPembayaran()">Sudah Bayar</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayar Barcode</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">Jav's Cafe</div>
+  </div>
+    
+  <h4>Pindai kode di bawah ini untuk membayar:</h4>
+  <img src="barcode.png" alt="Barcode Pembayaran" width="200">
+  <br><br>
+  <button onclick="konfirmasiPembayaran()">Sudah Bayar</button>
 
-<script>
-function konfirmasiPembayaran() {
-  const nomorAntrian = Math.floor(Math.random() * 100) + 1;
-  alert("✅ Pembayaran berhasil! Nomor antrian Anda: #" + nomorAntrian);
-  // bisa juga redirect ke halaman lain, misal:
-  // window.location.href = "sukses.html";
-}
-</script>
+  <script>
+    function konfirmasiPembayaran() {
+      const nomorAntrian = Math.floor(Math.random() * 100) + 1;
+      alert("✅ Pembayaran berhasil! Nomor antrian Anda: #" + nomorAntrian);
+
+      // Hapus semua data keranjang dari localStorage
+      localStorage.removeItem("cart"); // atau localStorage.clear(); jika ingin hapus semua
+
+      // Arahkan kembali ke halaman Home
+      window.location.href = "index.html"; // ganti sesuai dengan halaman home kamu
+    }
+  </script>
+</body>
+</html>

@@ -1,31 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap');
+
 body {
     margin: 0;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-top: 80px; /* untuk mencegah navbar menutupi konten */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(190, 145, 89);
-    color: #fff;
+    color: #ffffff;
+    background-image: url('https://source.unsplash.com/1600x900/?coffee,cafe');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(3px);
+    text-align: center;
 }
-
 
 /* Navbar */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
     background-color: #523513;
-    position: fixed; /* Membuat navbar tetap */
-    top: 0;
-    left: 0;
-    width: 97.5%;
-    height: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 60px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
-body {
-    padding-top: 100px; /* Mencegah konten tertutup navbar */
-}
-
-
 
 .navbar a {
     color: #ffffff;
@@ -44,188 +46,94 @@ body {
 }
 
 .navbar .menu {
-    display: flex; 
-    text-align:center;
+    display: flex;
     align-items: center;
 }
 
-.category h5{
+/* Hero */
+.hero {
+    text-align: left;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 30px;
+    color: #000;
+}
+
+.hero h1 {
+    font-size: 3rem;
     margin: 0;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(190, 145, 89);
-    color:  #ac4414a2;
-    text-align: center;
-    font-size: 45px;
-    font-weight: bold;
-    padding: 10px;
-    text-decoration: underline;
 }
 
-.grid .product h3{
-    font-size: 20px;
+.hero p {
+    font-size: 1.5rem;
+    margin: 15px 0;
 }
 
-.grid .product p{
-    font-size: 18px;
-}
-
-.grid .product button {
-    padding: 14px 13px;
+.hero button {
+    padding: 20px 30px;
     font-size: 1rem;
     color: #f7f7f7;
-    background-color: #962f00ea;
+    background-color: #5c4731;
     border: none;
     cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
+    border-radius: 10px;
 }
 
-.grid .product button:hover{
-    background-color: #000000a2;
+.hero button:hover {
+    background-color: #97571fa2;
 }
 
-.grid .product{
-    margin: auto;
-}
-
-.grid .productcaramel button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.grid .productcaramel button:hover{
-    background-color: #000000a2;
-}
-
-.grid .productyuzu button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.grid .productyuzu button:hover{
-    background-color: #000000a2;
-}
-
-.grid .productfrapucino button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.grid .productfrapucino button:hover{
-    background-color: #000000a2;
-}
-
-.grid .producticecoffe button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.grid .producticecoffe button:hover{
-    background-color: #000000a2;}
-
-    /* Hero Section */
-    .hero {
-        position: relative;
-        text-align: left;
-        height: 90vh;
-        background-color: rgb(190, 145, 89);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 30px;
-        color: #000;
-        
-    }
-
-    .hero h1 {
-        font-size: 3rem;
-        margin: 0;
-        line-height: 1.2;
-    }
-
-    .hero p {
-        font-size: 1.5rem;
-        margin: 15px 0;
-    }
-
-    .hero button {
-        padding: 20px 30px;
-        font-size: 1rem;
-        color: #f7f7f7;
-        background-color: #5c4731;
-        border: none;
-        cursor: pointer;
-        border-radius: 10px;
-    }
-
-    .hero button:hover {
-        background-color: #97571fa2;
-    }
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
-}
-/* PRODUCT BEST SELLER */
-.productcaramel{
-    margin: auto;
-}
-
-.productyuzu{
-    margin: auto;
-}
-
-.productfrapucino{
-    margin: auto;
-}
-
-.producticecoffe{
-    margin: auto;
-}
-.grid {
+/* Grid & Product Cards */
+.grid, .allmenu {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     padding: 1rem;
     align-items: center;
-    border-radius: 20px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, )
 }
 
-.menu h5{
+.allmenu {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.product, .productcaramel, .productyuzu, .productfrapucino, .producticecoffe, .tea {
     margin: auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.grid .product button,
+.grid .productcaramel button,
+.grid .productyuzu button,
+.grid .productfrapucino button,
+.grid .producticecoffe button,
+.allmenu .tea button {
+    padding: 14px 13px;
+    font-size: 1rem;
+    color: #f7f7f7;
+    background-color: #962f00ea;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-style: bold;
+}
+
+.grid .product button:hover,
+.grid .productcaramel button:hover,
+.grid .productyuzu button:hover,
+.grid .productfrapucino button:hover,
+.grid .producticecoffe button:hover,
+.allmenu .tea button:hover {
+    background-color: #000000a2;
+}
+
+/* Category Title */
+.category h5,
+.menu h5 {
+    margin: 0;
     color: #ac4414a2;
     text-align: center;
     font-size: 45px;
@@ -234,323 +142,52 @@ footer {
     text-decoration: underline;
 }
 
-
-/* ALL MENU */
-.allmenu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    padding: 2rem;
-    align-items: center;
-    margin: auto;
-}
-
-.allmenu .tea{
-    margin: auto;
-}
-
-
-.allmenu .tea button{
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.allmenu .tea button:hover{
-    background-color: #000000a2;
-}
-
-.allmenu .americano button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.allmenu .americano button:hover{
-    background-color: #000000a2;
-}
-
-.allmenu .caramelmatchiato button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.allmenu .caramelmatchiato button:hover{
-    background-color: #000000a2;
-}
-
-.allmenu .coffeefrapucino button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.allmenu .coffeefrapucino button:hover{
-    background-color: #000000a2;
-}
-
-.allmenu .producticecoffe button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: bold;
-}
-
-.allmenu .producticecoffe button:hover{
-    background-color: #000000a2;}
-
-    .allmenu .javachip button {
-        padding: 14px 13px;
-        font-size: 1rem;
-        color: #f7f7f7;
-        background-color: #962f00ea;
-        border: none;
-        cursor: pointer;
-        border-radius: 15px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-style: bold;
-    }
-    
-    .allmenu .javachip button:hover{
-        background-color: #000000a2;
-    }
-    
-    .allmenu .pumpkinlatte button {
-        padding: 14px 13px;
-        font-size: 1rem;
-        color: #f7f7f7;
-        background-color: #962f00ea;
-        border: none;
-        cursor: pointer;
-        border-radius: 15px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-style: bold;
-    }
-    
-    .allmenu .pumpkinlatte button:hover{
-        background-color: #000000a2;
-    }
-
-    .allmenu .pumpkinfrap button {
-        padding: 14px 13px;
-        font-size: 1rem;
-        color: #f7f7f7;
-        background-color: #962f00ea;
-        border: none;
-        cursor: pointer;
-        border-radius: 15px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-style: bold;
-    }
-    
-    .allmenu .pumpkinfrap button:hover{
-        background-color: #000000a2;
-    }
-    
-    .allmenu .saltedcaramel button {
-        padding: 14px 13px;
-        font-size: 1rem;
-        color: #f7f7f7;
-        background-color: #962f00ea;
-        border: none;
-        cursor: pointer;
-        border-radius: 15px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-style: bold;
-    }
-    
-    .allmenu .saltedcaramel button:hover{
-        background-color: #000000a2;
-    }
-    
-    .allmenu .productyuzu button {
-        padding: 14px 13px;
-        font-size: 1rem;
-        color: #f7f7f7;
-        background-color: #962f00ea;
-        border: none;
-        cursor: pointer;
-        border-radius: 15px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-style: bold;
-    }
-    
-    .allmenu .productyuzu button:hover{
-        background-color: #000000a2;}
-    
-    .allmenu .americano{
-        margin: auto;
-    }
-
-    .allmenu .caramelmatchiato{
-        margin: auto;
-    }
-
-    .allmenu .coffeefrapucino{
-        margin: auto;
-    }
-
-    .allmenu .producticecoffe{
-        margin: auto;
-    }
-
-    .allmenu .javachip{
-        margin: auto;
-    }
-
-    .allmenu .pumpkinfrap{
-        margin: auto;
-    }
-
-    .allmenu .pumpkinlatte{
-        margin: auto;
-    }
-    
-    .allmenu .productyuzu{
-        margin: auto;
-    }
-
-    .allmenu .saltedcaramel{
-        margin: auto;
-    }
-
-
-
-
-    /* style buat halaman keranjang */
-
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap');
-
-body {
-    font-family: 'Playfair Display', serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-image: url('https://source.unsplash.com/1600x900/?coffee,cafe');
-    background-size: cover;
-    background-position: center;
-    backdrop-filter: blur(3px);
-    color: #fff;
-}
-
-header {
-    position: relative;
-    background-color: rgba(102, 51, 0, 0.85);
-    padding: 20px;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.back-btn {
-    display: inline-block;
-    margin-top: 10px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    background: #d4a373;
-    padding: 8px 15px;
-    border-radius: 8px;
-}
-
-
-
-h2 {
-    font-size: 26px;
-    color: #f5d7c2;
-    justify-content: space-around;
-
-}
-
-h1{
-    color: #FFFf;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: rgb(190, 145, 89);
-    color: #ffffff;
-}
-
+/* Container (Keranjang Style) */
 .container {
     max-width: 1200px;
     margin: 120px auto 0 auto;
-    background-color:rgb(190, 145, 89);
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-inline: 20px;
-    flex-direction: column;
-    align-items: center;   /* Pusatkan isi */
-    width: 93.5%;
-    max-width: 3000px;      /* Batasi agar tidak terlalu lebar */
     padding: 25px;
     background: rgba(255, 248, 240, 0.95);
     border-radius: 12px;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
     color: #3d2c1e;
     text-align: center;
-    position: absolute;
 }
 
-header {
-    text-align: center;
-}
-
-.order-type, .order-summary, .promo, .payment-details {
-    margin-bottom: 20px;
-}
-
-.item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #724b1f;
-    padding: 10px;
-    border-radius: 5px;
-    
-}
-
+/* Tombol */
 button {
-    background-color: #0f2b68;
-    color: white;
+    padding: 10px 13px;
+    font-size: 1rem;
+    color: #f7f7f7;
+    background-color: #ff0000ea;
     border: none;
-    padding: 8px;
-    border-radius: 5px;
     cursor: pointer;
+    border-radius: 15px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-style: bold;
 }
 
 button:hover {
-    background-color: #0084ff;
+    background-color: #ff00008a;
+}
+
+.pay-now {
+    display: block;
+    margin: 30px auto;
+    width: 80%;
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pay-now:hover {
+    background-color: #644949;
 }
 
 .add-item {
@@ -592,6 +229,36 @@ button:hover {
     background-color: #c82333;
 }
 
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+}
 
-
-
+h4 {
+    font-size: 28px;
+    color: #4b2e13;
+    margin-top: 100px; /* supaya tidak tertutup navbar */
+  }
+  
+  /* Tombol "Sudah Bayar" */
+  button {
+    margin-top: 30px;
+    padding: 15px;
+    width: 80%;
+    max-width: 300px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #c82333;
+  }
