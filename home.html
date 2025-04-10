@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jav's Cafe</title>
+</head>
+<style>
+    body {
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(190, 145, 89);
+    color: #fff;
+}
+
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #523513;
+    position: fixed; /* Membuat navbar tetap */
+    top: 0;
+    left: 0;
+    width: 97.5%;
+    height: 50px;
+}
+
+body {
+    padding-top: 100px; /* Mencegah konten tertutup navbar */
+}
+
+
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    color: #7e7e7e;
+}
+
+.navbar .logo {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.navbar .menu {
+    display: flex; 
+    text-align:center;
+    align-items: center;
+}
+ /* Hero Section */
+ .hero {
+        position: relative;
+        text-align: left;
+        height: 90vh;
+        background-color: rgb(190, 145, 89);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 30px;
+        color: #000;
+        
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        margin: 15px 0;
+    }
+
+    .hero button {
+        padding: 20px 30px;
+        font-size: 1rem;
+        color: #f7f7f7;
+        background-color: #5c4731;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .hero button:hover {
+        background-color: #97571fa2;
+    }
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+}
+</style>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Jav's Cafe</div>
+        <div class="menu">
+            <a href="home.html">Home</a>
+            <a href="coffee.html">Coffee</a>
+            <a href="tea.html">Tea</a>
+            <a href="milk.html">Milk</a>
+            <a href="dessert.html">Dessert</a>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Kafe Estetik Modern</h1>
+        <p>Minum Kopi dengan Sentuhan Seni</p>
+        <button>Baca Selengkapnya</button>
+</section>
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Jav's Cafe. All Rights Reserved.
+    </footer>
+</body>
+</html>

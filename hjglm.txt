@@ -1,0 +1,59 @@
+<script>
+        function displayCart() {
+            let cartItems = document.getElementById("cartItems");
+            let checkoutButton = document.getElementById("checkoutButton");
+            cartItems.innerHTML = "";
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = "<p>Keranjang kosong</p>";
+                checkoutButton.style.display = "none"; // Sembunyikan tombol jika kosong
+                return;
+            }
+
+            checkoutButton.style.display = "block"; // Tampilkan tombol jika ada pesanan
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+
+                cartItems.innerHTML += `
+                    <div class="item">
+                        <span>${item.name}</span>
+                        <span>Rp ${item.price.toLocaleString()}</span>
+                        <button onclick="changeQuantity(${index}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="changeQuantity(${index}, 1)">+</button>
+                        <button onclick="removeItem(${index})">🗑️</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById("totalPrice").innerText = "Total: Rp " + total.toLocaleString();
+        }
+
+        function changeQuantity(index, amount) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        document.getElementById("checkoutButton").addEventListener("click", function () {
+            alert("Pembayaran Berhasil! Terima kasih telah berbelanja.");
+            localStorage.removeItem("cart");
+            displayCart();
+        });
+
+        document.addEventListener("DOMContentLoaded", displayCart);
+    </script>

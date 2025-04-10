@@ -1,0 +1,13 @@
+<h2>Pindai kode di bawah ini untuk membayar:</h2>
+<img src="barcode.png" alt="Barcode Pembayaran" width="200">
+<br><br>
+<button onclick="konfirmasiPembayaran()">Sudah Bayar</button>
+
+<script>
+function konfirmasiPembayaran() {
+  const nomorAntrian = Math.floor(Math.random() * 100) + 1;
+  alert("✅ Pembayaran berhasil! Nomor antrian Anda: #" + nomorAntrian);
+  // bisa juga redirect ke halaman lain, misal:
+  // window.location.href = "sukses.html";
+}
+</script>

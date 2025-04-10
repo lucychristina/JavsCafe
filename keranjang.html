@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang | Jav's Cafe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Jav's Cafe</div>
+        <div class="menu">
+            <a href="home.html">Home</a>
+            <a href="coffee.html">Coffee</a>
+            <a href="tea.html">Tea</a>
+            <a href="milk.html">Milk</a>
+            <a href="dessert.html">Dessert</a>
+            <a href="keranjang.html">Keranjang <span class="cart-badge" style="display:none;"></span></a>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <header>
+            <h1>Keranjang Belanja</h1>
+        </header>
+
+        <div class="order-summary">
+            <h3>Pesanan Anda</h3>
+            <ul id="cart-items">
+                <!-- Daftar menu akan tampil di sini -->
+            </ul>
+        </div>
+
+        <div class="payment-details">
+            <h4>Total Pembayaran</h4>
+            <p id="total-price">Total: Rp 0</p>
+        </div>
+
+        <button id="checkoutButton" style="display: none;">Bayar</button>
+
+        <div id="payment-options" style="display: none; margin-top: 20px;">
+            <p>Pilih metode pembayaran:</p>
+            <button onclick="bayarCash()">Cash</button>
+            <button onclick="bayarBarcode()">Barcode</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const totalPriceElement = document.getElementById("total-price");
+            const checkoutButton = document.getElementById("checkoutButton");
+            const paymentOptions = document.getElementById("payment-options");
+
+            function updateCartBadge() {
+                const cartIcon = document.querySelector(".menu a[href='keranjang.html']");
+                let badge = cartIcon.querySelector(".cart-badge");
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+                badge.textContent = totalQuantity;
+                badge.style.display = totalQuantity > 0 ? "inline-block" : "none";
+                localStorage.setItem("cartCount", totalQuantity);
+            }
+
+            function renderCart() {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                cartItemsContainer.innerHTML = "";
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
+                    totalPriceElement.textContent = "Total: Rp 0";
+                    checkoutButton.style.display = "none";
+                    paymentOptions.style.display = "none";
+                    updateCartBadge();
+                    return;
+                }
+
+                let total = 0;
+
+                cart.forEach((item, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        ${item.name} x${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString()}
+                        <button class="remove-btn" data-index="${index}">Hapus</button>
+                    `;
+                    cartItemsContainer.appendChild(li);
+                    total += item.price * item.quantity;
+                });
+
+                totalPriceElement.textContent = `Total: Rp ${total.toLocaleString()}`;
+                checkoutButton.style.display = "block";
+                updateCartBadge();
+
+                document.querySelectorAll(".remove-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const index = btn.getAttribute("data-index");
+                        cart.splice(index, 1);
+                        localStorage.setItem("cart", JSON.stringify(cart));
+                        renderCart();
+                    });
+                });
+            }
+
+            checkoutButton.addEventListener("click", () => {
+                // Munculkan opsi pembayaran
+                paymentOptions.style.display = "block";
+            });
+
+            renderCart();
+        });
+
+        function tampilkanOpsiPembayaran() {
+            document.getElementById("payment-options").style.display = "block";
+        }
+
+        function bayarCash() {
+            localStorage.removeItem("cart");
+            localStorage.removeItem("cartCount");
+            window.location.href = "bayar_cash.html";
+        }
+
+        function bayarBarcode() {
+            window.location.href = "bayar_barcode.html";
+        }
+    </script>
+</body>
+</html>
