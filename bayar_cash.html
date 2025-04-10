@@ -1,2 +1,27 @@
-<h2>Silakan antri dan membayar di kasir!</h2>
-<p>Terima kasih telah memesan di Jav's Cafe ☕</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Jav's Cafe</div>
+    </div>
+
+    <h2>Silakan antri dan membayar di kasir!</h2>
+    <p>Terima kasih telah memesan di Jav's Cafe ☕</p>
+
+    <button onclick="kembaliKeHome()">OK</button>
+
+    <script>
+        function kembaliKeHome() {
+            localStorage.removeItem("cart");
+            localStorage.removeItem("cartCount");
+            window.location.href = "index.html"; // Ganti dengan halaman home kamu jika berbeda
+        }
+    </script>
+</body>
+</html>

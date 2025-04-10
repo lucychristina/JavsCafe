@@ -49,82 +49,82 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const cartItemsContainer = document.getElementById("cart-items");
-            const totalPriceElement = document.getElementById("total-price");
-            const checkoutButton = document.getElementById("checkoutButton");
-            const paymentOptions = document.getElementById("payment-options");
+        const cartItemsContainer = document.getElementById("cart-items");
+        const totalPriceElement = document.getElementById("total-price");
+        const checkoutButton = document.getElementById("checkoutButton");
+        const paymentOptions = document.getElementById("payment-options");
 
-            function updateCartBadge() {
-                const cartIcon = document.querySelector(".menu a[href='keranjang.html']");
-                let badge = cartIcon.querySelector(".cart-badge");
-                const cart = JSON.parse(localStorage.getItem("cart")) || [];
-                const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+        function updateCartBadge() {
+            const cartIcon = document.querySelector(".menu a[href='keranjang.html']");
+            let badge = cartIcon ? cartIcon.querySelector(".cart-badge") : null;
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+            if (badge) {
                 badge.textContent = totalQuantity;
                 badge.style.display = totalQuantity > 0 ? "inline-block" : "none";
-                localStorage.setItem("cartCount", totalQuantity);
             }
 
-            function renderCart() {
-                const cart = JSON.parse(localStorage.getItem("cart")) || [];
-                cartItemsContainer.innerHTML = "";
+            localStorage.setItem("cartCount", totalQuantity);
+        }
 
-                if (cart.length === 0) {
-                    cartItemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
-                    totalPriceElement.textContent = "Total: Rp 0";
-                    checkoutButton.style.display = "none";
-                    paymentOptions.style.display = "none";
-                    updateCartBadge();
-                    return;
-                }
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cartItemsContainer.innerHTML = "";
 
-                let total = 0;
-
-                cart.forEach((item, index) => {
-                    const li = document.createElement("li");
-                    li.innerHTML = `
-                        ${item.name} x${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString()}
-                        <button class="remove-btn" data-index="${index}">Hapus</button>
-                    `;
-                    cartItemsContainer.appendChild(li);
-                    total += item.price * item.quantity;
-                });
-
-                totalPriceElement.textContent = `Total: Rp ${total.toLocaleString()}`;
-                checkoutButton.style.display = "block";
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
+                totalPriceElement.textContent = "Total: Rp 0";
+                checkoutButton.style.display = "none";
+                paymentOptions.style.display = "none";
                 updateCartBadge();
-
-                document.querySelectorAll(".remove-btn").forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        const index = btn.getAttribute("data-index");
-                        cart.splice(index, 1);
-                        localStorage.setItem("cart", JSON.stringify(cart));
-                        renderCart();
-                    });
-                });
+                return;
             }
 
-            checkoutButton.addEventListener("click", () => {
-                // Munculkan opsi pembayaran
-                paymentOptions.style.display = "block";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    ${item.name} x${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString()}
+                    <button class="remove-btn" data-index="${index}">Hapus</button>
+                `;
+                cartItemsContainer.appendChild(li);
+                total += item.price * item.quantity;
             });
 
-            renderCart();
+            totalPriceElement.textContent = `Total: Rp ${total.toLocaleString()}`;
+            checkoutButton.style.display = "block";
+            updateCartBadge();
+
+            // Tombol hapus
+            document.querySelectorAll(".remove-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const index = btn.getAttribute("data-index");
+                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                    cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    renderCart(); // render ulang setelah item dihapus
+                });
+            });
+        }
+
+        checkoutButton.addEventListener("click", () => {
+            paymentOptions.style.display = "block";
         });
 
-        function tampilkanOpsiPembayaran() {
-            document.getElementById("payment-options").style.display = "block";
-        }
+        renderCart(); // panggil saat pertama kali
+    });
 
-        function bayarCash() {
-            localStorage.removeItem("cart");
-            localStorage.removeItem("cartCount");
-            window.location.href = "bayar_cash.html";
-        }
+    function bayarCash() {
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cartCount");
+        window.location.href = "bayar_cash.html";
+    }
 
-        function bayarBarcode() {
-            window.location.href = "bayar_barcode.html";
-        }
+    function bayarBarcode() {
+        window.location.href = "bayar_barcode.html";
+    }
     </script>
 </body>
 </html>

@@ -1,32 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap');
+/* Import Font */
 
+/* Body */
 body {
     margin: 0;
-    padding-top: 80px; /* untuk mencegah navbar menutupi konten */
+    padding-top: 70px; /* Menyesuaikan tinggi navbar */
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(190, 145, 89);
     color: #ffffff;
-    background-image: url('https://source.unsplash.com/1600x900/?coffee,cafe');
+    text-align: center;
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(3px);
-    text-align: center;
 }
 
 /* Navbar */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
     background-color: #523513;
-    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: 999;
+    color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.navbar .logo {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.navbar .menu {
+    display: flex; 
+    align-items: center;
+    text-align: center;
 }
 
 .navbar a {
@@ -40,20 +52,12 @@ body {
     color: #7e7e7e;
 }
 
-.navbar .logo {
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.navbar .menu {
-    display: flex;
-    align-items: center;
-}
-
-/* Hero */
+/* Hero Section */
 .hero {
+    position: relative;
     text-align: left;
     height: 90vh;
+    background-color: rgb(190, 145, 89);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,6 +68,7 @@ body {
 .hero h1 {
     font-size: 3rem;
     margin: 0;
+    line-height: 1.2;
 }
 
 .hero p {
@@ -85,55 +90,18 @@ body {
     background-color: #97571fa2;
 }
 
-/* Grid & Product Cards */
-.grid, .allmenu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    align-items: center;
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
 }
 
-.allmenu {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    padding: 2rem;
-}
-
-.product, .productcaramel, .productyuzu, .productfrapucino, .producticecoffe, .tea {
-    margin: auto;
-}
-
-.grid .product button,
-.grid .productcaramel button,
-.grid .productyuzu button,
-.grid .productfrapucino button,
-.grid .producticecoffe button,
-.allmenu .tea button {
-    padding: 14px 13px;
-    font-size: 1rem;
-    color: #f7f7f7;
-    background-color: #962f00ea;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-style: bold;
-}
-
-.grid .product button:hover,
-.grid .productcaramel button:hover,
-.grid .productyuzu button:hover,
-.grid .productfrapucino button:hover,
-.grid .producticecoffe button:hover,
-.allmenu .tea button:hover {
-    background-color: #000000a2;
-}
-
-/* Category Title */
-.category h5,
-.menu h5 {
-    margin: 0;
+/* Category & Menu Titles */
+.category h5, .menu h5 {
+    margin: 0 auto;
+    font-family: 'Lucida Sans', sans-serif;
     color: #ac4414a2;
     text-align: center;
     font-size: 45px;
@@ -142,36 +110,118 @@ body {
     text-decoration: underline;
 }
 
-/* Container (Keranjang Style) */
-.container {
-    max-width: 1200px;
-    margin: 120px auto 0 auto;
-    padding: 25px;
-    background: rgba(255, 248, 240, 0.95);
-    border-radius: 12px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    color: #3d2c1e;
-    text-align: center;
+/* Grid Product Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Tombol */
-button {
-    padding: 10px 13px;
+.grid .product, .productcaramel, .productyuzu, .productfrapucino, .producticecoffe {
+    margin: auto;
+}
+
+.grid .product h3 {
+    font-size: 20px;
+}
+
+.grid .product p {
+    font-size: 18px;
+}
+
+/* All Menu Layout */
+.allmenu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 2rem;
+    align-items: center;
+    margin: auto;
+}
+
+.allmenu .tea {
+    margin: auto;
+}
+
+/* Buttons (Product, Cart, Payment, etc.) */
+button,
+.grid .product button,
+.grid .productcaramel button,
+.grid .productyuzu button,
+.grid .productfrapucino button,
+.grid .producticecoffe button,
+.allmenu .tea button,
+.payment-options button {
+    padding: 14px 13px;
     font-size: 1rem;
     color: #f7f7f7;
-    background-color: #ff0000ea;
+    background-color: #962f00ea;
     border: none;
     cursor: pointer;
     border-radius: 15px;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-style: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
 }
 
 button:hover {
     background-color: #ff00008a;
 }
 
-.pay-now {
+.grid .product button:hover,
+.grid .productcaramel button:hover,
+.grid .productyuzu button:hover,
+.grid .productfrapucino button:hover,
+.grid .producticecoffe button:hover,
+.allmenu .tea button:hover,
+.payment-options button:hover {
+    background-color: #000000a2;
+}
+
+/* Keranjang (Cart) Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto 0 auto; /* Digeser ke atas dan diperlebar */
+    padding: 25px;
+    background: rgba(255, 248, 240, 0.95);
+    color: #3d2c1e;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    width: 90%;
+}
+
+/* Order Sections */
+.order-type, .order-summary, .promo, .payment-details {
+    margin-bottom: 20px;
+}
+
+/* Cart Items */
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #724b1f;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Payment Details */
+.payment-details {
+    background-color: #9caf44;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.total {
+    font-weight: bold;
+}
+
+.pay-now, .pay-button {
     display: block;
     margin: 30px auto;
     width: 80%;
@@ -184,12 +234,14 @@ button:hover {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.pay-now:hover {
-    background-color: #644949;
+.pay-now:hover, .pay-button:hover {
+    background-color: #c82333;
 }
 
+/* Tombol Tambah & Hapus Item */
 .add-item {
     background-color: #007bff;
 }
@@ -206,59 +258,24 @@ button:hover {
     background-color: darkred;
 }
 
-.payment-details {
-    background-color: #9caf44;
-    padding: 10px;
-    border-radius: 5px;
+/* Header untuk halaman tertentu */
+header {
+    position: relative;
+    background-color: rgba(252, 180, 108, 0.85);
+    padding: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.total {
+/* Pesan setelah bayar */
+h2, p {
     font-weight: bold;
+    font-size: 1.8rem;
 }
 
-.pay-button {
-    background-color: #dc3545;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+h2 {
+    margin-top: 100px;
 }
 
-.pay-button:hover {
-    background-color: #c82333;
+p {
+    margin-bottom: 30px;
 }
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
-}
-
-h4 {
-    font-size: 28px;
-    color: #4b2e13;
-    margin-top: 100px; /* supaya tidak tertutup navbar */
-  }
-  
-  /* Tombol "Sudah Bayar" */
-  button {
-    margin-top: 30px;
-    padding: 15px;
-    width: 80%;
-    max-width: 300px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #c82333;
-  }
