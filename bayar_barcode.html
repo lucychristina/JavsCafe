@@ -11,11 +11,12 @@
     <div class="logo">Jav's Cafe</div>
   </div>
     
-  <h4>Pindai kode di bawah ini untuk membayar:</h4>
-  <img src="barcode.png" alt="Barcode Pembayaran" width="200">
-  <br><br>
-  <button onclick="konfirmasiPembayaran()">Sudah Bayar</button>
-
+  <div class="barcode-container">
+    <h4>Pindai kode di bawah ini untuk membayar:</h4>
+    <img src="barcode.png" alt="Barcode Pembayaran" class="barcode-img">
+    <br><br>
+    <button onclick="konfirmasiPembayaran()">Sudah Bayar</button>
+  </div>
   <script>
     function konfirmasiPembayaran() {
       const nomorAntrian = Math.floor(Math.random() * 100) + 1;

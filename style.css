@@ -5,12 +5,12 @@ body {
     margin: 0;
     padding-top: 70px; /* Menyesuaikan tinggi navbar */
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: rgb(190, 145, 89);
-    color: #ffffff;
-    text-align: center;
+    background-image: url('bg1.jpg'); /* Pastikan nama file dan path-nya benar */
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
-    backdrop-filter: blur(3px);
+    background-attachment: fixed; /* Biar efeknya elegan saat scroll */
+    color: #fff;
 }
 
 /* Navbar */
@@ -101,8 +101,8 @@ footer {
 /* Category & Menu Titles */
 .category h5, .menu h5 {
     margin: 0 auto;
-    font-family: 'Lucida Sans', sans-serif;
-    color: #ac4414a2;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #8d0000a2;
     text-align: center;
     font-size: 45px;
     font-weight: bold;
@@ -127,10 +127,12 @@ footer {
 
 .grid .product h3 {
     font-size: 20px;
+    color: #612a15;
 }
 
 .grid .product p {
     font-size: 18px;
+    color: #612a15;
 }
 
 /* All Menu Layout */
@@ -141,6 +143,8 @@ footer {
     padding: 2rem;
     align-items: center;
     margin: auto;
+    color: #612a15;
+    font-size: 18px;
 }
 
 .allmenu .tea {
@@ -179,6 +183,31 @@ button:hover {
 .allmenu .tea button:hover,
 .payment-options button:hover {
     background-color: #000000a2;
+}
+
+.barcode-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    padding: 40px 20px;
+}
+
+.barcode-container h4 {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+    color: #612a15;
+}
+
+.barcode-img {
+    width: 300px; /* Ukuran barcode lebih besar */
+    max-width: 80%;
+    height: auto;
+    border: 4px solid #fff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Keranjang (Cart) Container */
@@ -279,3 +308,18 @@ h2 {
 p {
     margin-bottom: 30px;
 }
+.add-to-cart.clicked {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .menu img.pulse {
+    animation: pulse 0.4s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  

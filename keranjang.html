@@ -1,130 +1,156 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang | Jav's Cafe</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang | Jav's Cafe</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .cart-badge {
+      position: absolute;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 7px;
+      font-size: 12px;
+      top: -5px;
+      right: -10px;
+      display: none;
+    }
+    .remove-btn {
+      margin-left: 10px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">Jav's Cafe</div>
-        <div class="menu">
-            <a href="index.html">Home</a>
-            <a href="coffee.html">Coffee</a>
-            <a href="tea.html">Tea</a>
-            <a href="milk.html">Milk</a>
-            <a href="dessert.html">Dessert</a>
-        </div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Jav's Cafe</div>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="coffee.html">Coffee</a>
+      <a href="tea.html">Tea</a>
+      <a href="milk.html">Milk</a>
+      <a href="dessert.html">Dessert</a>
+      <a href="keranjang.html" style="position: relative;">
+        <img src="keranjang.png" alt="Keranjang" width="24" />
+        <span class="cart-badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Container -->
+  <div class="container">
+    <header>
+      <h1>Keranjang Belanja</h1>
+    </header>
+
+    <div class="order-summary">
+      <h3>Pesanan Anda</h3>
+      <ul id="cart-items">
+        <!-- Daftar menu akan tampil di sini -->
+      </ul>
     </div>
 
-    <!-- Container -->
-    <div class="container">
-        <header>
-            <h1>Keranjang Belanja</h1>
-        </header>
-
-        <div class="order-summary">
-            <h3>Pesanan Anda</h3>
-            <ul id="cart-items">
-                <!-- Daftar menu akan tampil di sini -->
-            </ul>
-        </div>
-
-        <div class="payment-details">
-            <h4>Total Pembayaran</h4>
-            <p id="total-price">Total: Rp 0</p>
-        </div>
-
-        <button id="checkoutButton" class="pay-now" style="display: none;">Bayar</button>
-
-        <div id="payment-options" style="display: none; margin-top: 20px;">
-            <p>Pilih metode pembayaran:</p>
-            <button onclick="bayarCash()">Cash</button>
-            <button onclick="bayarBarcode()">Barcode</button>
-        </div>
+    <div class="payment-details">
+      <h4>Total Pembayaran</h4>
+      <p id="total-price">Total: Rp 0</p>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const cartItemsContainer = document.getElementById("cart-items");
-        const totalPriceElement = document.getElementById("total-price");
-        const checkoutButton = document.getElementById("checkoutButton");
-        const paymentOptions = document.getElementById("payment-options");
+    <button id="checkoutButton" class="pay-now" style="display: none;">Bayar</button>
 
-        function updateCartBadge() {
-            const cartIcon = document.querySelector(".menu a[href='keranjang.html']");
-            let badge = cartIcon ? cartIcon.querySelector(".cart-badge") : null;
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    <div id="payment-options" style="display: none; margin-top: 20px;">
+      <p>Pilih metode pembayaran:</p>
+      <button onclick="bayarCash()">Cash</button>
+      <button onclick="bayarBarcode()">Barcode</button>
+    </div>
+  </div>
 
-            if (badge) {
-                badge.textContent = totalQuantity;
-                badge.style.display = totalQuantity > 0 ? "inline-block" : "none";
-            }
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cartItemsContainer = document.getElementById("cart-items");
+      const totalPriceElement = document.getElementById("total-price");
+      const checkoutButton = document.getElementById("checkoutButton");
+      const paymentOptions = document.getElementById("payment-options");
+      const cartBadge = document.querySelector(".cart-badge");
 
-            localStorage.setItem("cartCount", totalQuantity);
+      function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        if (cartBadge) {
+          cartBadge.textContent = totalQuantity;
+          cartBadge.style.display = totalQuantity > 0 ? "inline-block" : "none";
         }
 
-        function renderCart() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cartItemsContainer.innerHTML = "";
+        localStorage.setItem("cartCount", totalQuantity);
+      }
 
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
-                totalPriceElement.textContent = "Total: Rp 0";
-                checkoutButton.style.display = "none";
-                paymentOptions.style.display = "none";
-                updateCartBadge();
-                return;
-            }
+      function renderCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cartItemsContainer.innerHTML = "";
 
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                    ${item.name} x${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString()}
-                    <button class="remove-btn" data-index="${index}">Hapus</button>
-                `;
-                cartItemsContainer.appendChild(li);
-                total += item.price * item.quantity;
-            });
-
-            totalPriceElement.textContent = `Total: Rp ${total.toLocaleString()}`;
-            checkoutButton.style.display = "block";
-            updateCartBadge();
-
-            // Tombol hapus
-            document.querySelectorAll(".remove-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const index = btn.getAttribute("data-index");
-                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                    cart.splice(index, 1);
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    renderCart(); // render ulang setelah item dihapus
-                });
-            });
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
+          totalPriceElement.textContent = "Total: Rp 0";
+          checkoutButton.style.display = "none";
+          paymentOptions.style.display = "none";
+          updateCartBadge();
+          return;
         }
 
-        checkoutButton.addEventListener("click", () => {
-            paymentOptions.style.display = "block";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            ${item.name} x${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString()}
+            <button class="remove-btn" data-index="${index}">Hapus</button>
+          `;
+          cartItemsContainer.appendChild(li);
+          total += item.price * item.quantity;
         });
 
-        renderCart(); // panggil saat pertama kali
+        totalPriceElement.textContent = `Total: Rp ${total.toLocaleString()}`;
+        checkoutButton.style.display = "block";
+        updateCartBadge();
+
+        // Tombol hapus
+        document.querySelectorAll(".remove-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const index = btn.getAttribute("data-index");
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+          });
+        });
+      }
+
+      checkoutButton.addEventListener("click", () => {
+        paymentOptions.style.display = "block";
+      });
+
+      renderCart();
     });
 
     function bayarCash() {
-        localStorage.removeItem("cart");
-        localStorage.removeItem("cartCount");
-        window.location.href = "bayar_cash.html";
+      localStorage.removeItem("cart");
+      localStorage.removeItem("cartCount");
+      window.location.href = "bayar_cash.html";
     }
 
     function bayarBarcode() {
-        window.location.href = "bayar_barcode.html";
+      window.location.href = "bayar_barcode.html";
     }
-    </script>
+  </script>
+
 </body>
 </html>
